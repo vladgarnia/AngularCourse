@@ -1,0 +1,28 @@
+<div class="sidenav" [ngClass]="{'closed': !sidebarOpen}" [@collapse]="!sidebarOpen ? 'collapsed' : ''" (mouseenter)='toggleSidebar()'
+  (mouseleave)='toggleSidebar()'>
+  <mat-nav-list>
+    <ng-container *ngFor='let link of sidebarLinks'>
+      <a mat-list-item routerLinkActive="active" [routerLink]="[link.route]">
+        <mat-icon matListIcon align="center" class="fa fw" [ngClass]="link.icon"></mat-icon>
+        <div class="sidebar-link-text flex-grow">
+          &nbsp; &nbsp; &nbsp; {{link.text}}
+        </div>
+      </a>
+      <mat-divider></mat-divider>
+    </ng-container>
+    <mat-divider></mat-divider>
+
+    <ng-container *ngIf='sidebarOpen'>
+      <mat-divider></mat-divider>
+      <h3 matSubheader>Parameters</h3>
+      <mat-divider></mat-divider>
+      <ng-container *ngFor="let param of params">
+        <a mat-list-item routerLinkActive="active" [routerLink]="['parameter',param.field]">
+          <mat-icon matListIcon align="center" class="fa fw fa-sliders"></mat-icon> &nbsp;
+          <div class="sidebar-link-text flex-grow" matTooltip="{{param.desc}}"> &nbsp; &nbsp; &nbsp;{{param.name}}</div>
+        </a>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </ng-container>
+  </mat-nav-list>
+</div>

@@ -1,0 +1,28 @@
+<div class="sidenav-container">
+  <app-sidebar></app-sidebar>
+
+  <div (scroll)='onContentScroll()' class="sidenav-content" #sidenavContent>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h1 class=" mt-3">
+            <mat-card>
+              <mat-card-title>
+                {{pageName}}
+              </mat-card-title>
+            </mat-card>
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+
+    <button (click)='scrollToTop()' class="back-to-top-button" mat-fab [@scrollButton]="canScrollToTop ? 'scrollable' : ''">
+      <span class="fa fw fa-arrow-up"></span>
+    </button>
+  </div>
+</div>
